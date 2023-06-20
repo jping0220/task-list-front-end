@@ -4,7 +4,7 @@ import './App.css';
 import { useState } from 'react';
 
 
-const TASKS = [
+const data = [
   {
     id: 1,
     title: 'Mow the lawn',
@@ -13,15 +13,20 @@ const TASKS = [
   {
     id: 2,
     title: 'Cook Pasta',
-    isComplete: true,
+    isComplete: false,
+  },
+  {
+    id: 3,
+    title: 'Do the laundry',
+    isComplete: false,
   },
 ];
 
 const App = () => {
-  const [task, setTasks] = useState(TASKS);
+  const [tasks, setTasks] = useState(data);
 
   const togglePresent = (id) => {
-    const tasks = task.map((task) => {
+    const newTasks = tasks.map((task) => {
       if (task.id === id) {
         return {
           ...task,
@@ -31,7 +36,17 @@ const App = () => {
         return task;
       }
     });
-    setTasks(tasks);
+    setTasks(newTasks);
+  };
+  
+  const deleteTasks = (id) => {
+    const newTasks = [];
+    for (let task of tasks) {
+      if (task.id !== id) {
+        newTasks.push(task);
+      }
+    }
+    setTasks(newTasks);
   };
 
 
@@ -41,7 +56,10 @@ const App = () => {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
-        <div>{<TaskList tasks={task} updateTaskComplete={togglePresent}/>}</div>
+        <div>{<TaskList
+          tasks={tasks}
+          updateTaskComplete={togglePresent}
+          deleteTasks={deleteTasks} />}</div>
       </main>
     </div>
   );
