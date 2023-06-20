@@ -1,7 +1,8 @@
 import React from 'react';
 import TaskList from './components/TaskList.js';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
 const data = [
@@ -21,9 +22,32 @@ const data = [
     isComplete: false,
   },
 ];
-
+const URL = 'https://task-list-api-c17.onrender.com/';
 const App = () => {
   const [tasks, setTasks] = useState(data);
+  
+  const getTasks = () => {
+    axios
+      .get(URL)
+      .then((res) => {
+  const newTasks = res.data.map((task) => {
+    return {
+      id: task.id,
+      text: task.title,
+      done: task.isComplete,
+    };
+  });
+  setTasks(newTasks);
+      })
+      .catch ((err) => {
+        console.log(err);
+});
+    
+  };
+
+useEffect(() => {
+  getTasks();
+}, [tasks]);
 
   const togglePresent = (id) => {
     const newTasks = tasks.map((task) => {
