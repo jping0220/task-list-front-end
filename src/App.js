@@ -25,16 +25,17 @@ const data = [
 const URL = 'https://task-list-api-c17.onrender.com/';
 const App = () => {
   const [tasks, setTasks] = useState(data);
+  console.log(tasks);
   
   const getTasks = () => {
     axios
       .get(URL)
       .then((res) => {
-  const newTasks = res.data.map((task) => {
+  const newTasks = res.data.map((tasks) => {
     return {
-      id: task.id,
-      text: task.title,
-      done: task.isComplete,
+      id: tasks.id,
+      text: tasks.title,
+      done: tasks.isComplete,
     };
   });
   setTasks(newTasks);
