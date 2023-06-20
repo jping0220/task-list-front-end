@@ -31,7 +31,7 @@ const App = () => {
         return task;
       }
     });
-    setTasks(tasks.map);
+    setTasks(tasks);
   };
 
 
@@ -41,7 +41,7 @@ const App = () => {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
-        <div>{<TaskList tasks={TASKS} updateTaskComplete={togglePresent}/>}</div>
+        <div>{<TaskList tasks={task} updateTaskComplete={togglePresent}/>}</div>
       </main>
     </div>
   );
