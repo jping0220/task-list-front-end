@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Task from './Task';
+import NewTaskForm from './NewTaskForm';
 import './TaskList.css';
+
 
 const TaskList = (props) => {
   // const getTaskListJSX = (tasks) => {
@@ -14,12 +16,17 @@ const TaskList = (props) => {
           isComplete={task.isComplete}
           updateTaskComplete={props.updateTaskComplete}
           deleteTasks={props.deleteTasks}
+          // addTask={props.addTask}
         />
       );
     });
 
   return (
-  <ul className="tasks__list no-bullet">{taskComponents}</ul>);
+    <div>
+      <ul className="tasks__list no-bullet">{taskComponents}</ul>
+      <NewTaskForm addTask={props.addTask} />
+    </div>
+  );
 };
 
 TaskList.propTypes = {
@@ -28,11 +35,11 @@ TaskList.propTypes = {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       isComplete: PropTypes.bool.isRequired,
-      // updateTaskComplete: PropTypes.func.isRequired,
     })
   ).isRequired,
   updateTaskComplete: PropTypes.func.isRequired,
-  deleteTasks:PropTypes.func.isRequired
+  deleteTasks: PropTypes.func.isRequired,
+  addTask:PropTypes.func.isRequired
 };
 
 export default TaskList;

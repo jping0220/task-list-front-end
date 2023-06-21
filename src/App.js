@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskList from './components/TaskList.js';
+import NewTaskForm from './components/NewTaskForm.js';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -39,6 +40,17 @@ const App = () => {
       });
   }, []);
   
+  const addTask = (newTasks) => {
+    axios
+      .post(`${API}/tasks`, newTasks)
+      .then((response) => {
+        const newTasks = [...tasks, response.data];
+        setTasks(newTasks);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
 //   const getTasks = () => {
 //     axios
@@ -118,6 +130,7 @@ const App = () => {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
+        <NewTaskForm addTask={addTask} />
         <div>{<TaskList
           tasks={tasks}
           updateTaskComplete={togglePresent}
