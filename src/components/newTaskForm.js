@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 
-const newTaskForm = ({ id }) => {
+const NewTaskForm = ({ addTask }) => {
     const [title, setTitle] = useState('');
     const [isComplete, setIsComplete] = useState(false);
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
         const newTask = {
             title: title,
@@ -23,20 +23,20 @@ const newTaskForm = ({ id }) => {
                 type="text"
                 id="title"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}></input>
+                onChange={(event) => setTitle(event.target.value)}></input>
             <label htmlFor="isComplete" >Is Complete:</label>
             <input
                 type="text"
                 id="isComplete"
                 checked={isComplete}
-                onChange={(e) => setIsComplete(e.target.checked)} />
+                onChange={(event) => setIsComplete(event.target.checked)} />
             
             <button type="submit">  Add Task </button>
         </form>
     );
 };
-newTaskForm.propTypes = {
+NewTaskForm.propTypes = {
     addTask: PropTypes.func.isRequired,
 };
 
-export default newTaskForm;
+export default NewTaskForm;

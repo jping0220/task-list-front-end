@@ -32,7 +32,6 @@ const App = () => {
     axios
       .get(`${ API }/tasks`)
       .then((response) => {
-        // console.log(response.data);
         setTasks(response.data);
       })
       .catch((err) => {
@@ -52,25 +51,6 @@ const App = () => {
       });
   };
 
-//   const getTasks = () => {
-//     axios
-//       .get(API)
-//       .then((res) => {
-//   const newTasks = res.data.map((tasks) => {
-//     return {
-//       id: tasks.id,
-//       text: tasks.title,
-//       done: tasks.isComplete,
-//     };
-//   });
-//   setTasks(newTasks);
-//       })
-//       .catch ((err) => {
-//         console.log(err);
-// });
-    
-//   };
-     
  
 
   const togglePresent = (id) => {
