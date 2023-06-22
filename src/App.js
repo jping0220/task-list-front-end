@@ -110,12 +110,13 @@ const App = () => {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
-        <NewTaskForm addTask={addTask} />
         <div>{<TaskList
           tasks={tasks}
           updateTaskComplete={togglePresent}
           toggleIncompleteTask={toggleIncompleteTask}
-          deleteTasks={deleteTasks} />}</div>
+          deleteTasks={deleteTasks} />}
+        </div>
+        <NewTaskForm addTask={addTask} />
       </main>
     </div>
   );

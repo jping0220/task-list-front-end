@@ -18,20 +18,24 @@ const NewTaskForm = ({ addTask }) => {
     };
     return (
         <form onSubmit={handleSubmit}>
+            <div>
             <label htmlFor="title"> Title:</label>
             <input
                 type="text"
                 id="title"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}></input>
+            </div>
+            <div>
             <label htmlFor="isComplete" >Is Complete:</label>
             <input
                 type="text"
                 id="isComplete"
                 checked={isComplete}
                 onChange={(event) => setIsComplete(event.target.checked)} />
-            
-            <button type="submit">  Add Task </button>
+            </div>
+            <input type="submit" value="Add Task"/>
+            {/* <button type="submit"> Add Task </button> */}
         </form>
     );
 };
