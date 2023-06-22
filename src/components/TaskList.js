@@ -16,7 +16,7 @@ const TaskList = (props) => {
           isComplete={task.isComplete}
           updateTaskComplete={props.updateTaskComplete}
           deleteTasks={props.deleteTasks}
-          // addTask={props.addTask}
+        
         />
       );
     });
