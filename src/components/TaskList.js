@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Task from './Task';
-import NewTaskForm from './NewTaskForm';
+// import NewTaskForm from './NewTaskForm';
 import './TaskList.css';
 
 
@@ -13,9 +14,10 @@ const TaskList = (props) => {
           key={task.id}
           id={task.id}
           title={task.title}
-          isComplete={task.isComplete}
+          is_complete={task.is_complete}
           updateTaskComplete={props.updateTaskComplete}
           deleteTasks={props.deleteTasks}
+          toggleIncompleteTask={props.toggleIncompleteTask}
         
         />
       );
@@ -24,7 +26,7 @@ const TaskList = (props) => {
   return (
     <div>
       <ul className="tasks__list no-bullet">{taskComponents}</ul>
-      <NewTaskForm addTask={props.addTask} />
+      {/* <NewTaskForm addTask={props.addTask} /> */}
     </div>
   );
 };
@@ -34,12 +36,13 @@ TaskList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      isComplete: PropTypes.bool.isRequired,
+      is_complete: PropTypes.bool.isRequired,
     })
   ).isRequired,
   updateTaskComplete: PropTypes.func.isRequired,
   deleteTasks: PropTypes.func.isRequired,
-  addTask:PropTypes.func.isRequired
+  addTask: PropTypes.func.isRequired,
+  toggleIncompleteTask:PropTypes.func.isRequired
 };
 
 export default TaskList;

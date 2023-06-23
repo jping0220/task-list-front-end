@@ -1,20 +1,28 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Task.css';
 
-const Task = ({ id, title, isComplete, updateTaskComplete, deleteTasks}) => {
-  // const [complete, setComplete] = useState(isComplete);
+const Task = ({ id, title, is_complete, updateTaskComplete, deleteTasks,toggleIncompleteTask}) => {
+  // const [complete, setComplete] = useState(is_complete);
   // const updateTaskStatus = () => {
   //   updateTaskComplete(id);
   // };
-  const buttonClass = isComplete ? 'tasks__item__toggle--completed' : '';
+  const buttonClass = is_complete ? 'tasks__item__toggle--completed' : '';
+  const newEventHandler = () => {
+    if (is_complete) {
+      toggleIncompleteTask(id);
+    } else {
+      updateTaskComplete(id);
+    }
+  };
  
 
   return (
     <li className="tasks__item">
       <button
         className={`tasks__item__toggle ${buttonClass}`}
-        onClick={() => updateTaskComplete(id)}
+        onClick={newEventHandler}
       >
         {title}
       </button>
@@ -27,9 +35,10 @@ const Task = ({ id, title, isComplete, updateTaskComplete, deleteTasks}) => {
 Task.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  isComplete: PropTypes.bool.isRequired,
+  is_complete: PropTypes.bool.isRequired,
   updateTaskComplete: PropTypes.func.isRequired,
-  deleteTasks:PropTypes.func.isRequired
+  deleteTasks: PropTypes.func.isRequired,
+  toggleIncompleteTask:PropTypes.func.isRequired
 };
 
 export default Task;

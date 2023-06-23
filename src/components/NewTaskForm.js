@@ -1,16 +1,19 @@
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 
 const NewTaskForm = ({ addTask }) => {
     const [title, setTitle] = useState('');
-    const [isComplete, setIsComplete] = useState(false);
+    const [is_complete, setIsComplete] = useState(false);
+    
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('we are in handlesubmit');
 
         const newTask = {
             title: title,
-            isComplete: isComplete,
+            is_complete: is_complete,
         };
         addTask(newTask);
         setTitle('');
@@ -27,12 +30,12 @@ const NewTaskForm = ({ addTask }) => {
                 onChange={(event) => setTitle(event.target.value)}
             />
             
-            <label htmlFor="isComplete" >Is Complete:</label>
+            <label htmlFor="is_complete" >Is Complete:</label>
             <input
-                type="text"
-                id="isComplete"
-                checked={isComplete}
-                onChange={(event) => setIsComplete(event.target.checked)} />
+                type="bool"
+                id="is_complete"
+                value={is_complete}
+                onChange={(event) => setIsComplete(event.target.value)} />
         
             <input type="submit" value="Add Task"/>
         </form>

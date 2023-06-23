@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import TaskList from './components/TaskList.js';
 import NewTaskForm from './components/NewTaskForm.js';
@@ -52,14 +53,13 @@ const App = () => {
   };
 
  
-
   const togglePresent = (id) => {
     axios
       .patch(`${API}/tasks/${id}/mark_complete`)
       .then(() => {
         const newTasks = tasks.map((task) => {
           if (task.id === id) {
-            return { ...task, isComplete: true };
+            return { ...task, is_complete: true };
           } else {
             return task;
           }
@@ -77,7 +77,7 @@ const App = () => {
       .then(() => {
         const newTasks = tasks.map((task) => {
           if (task.id === id) {
-            return { ...task, isComplete: false };
+            return { ...task, is_complete: false };
           }
           else {
             return task;
